@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>APIView</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+</head>
+<body>
+
+    <h3 class="text-center">Consumindo API's com JQuery</h3>
+    <ul class="list-group" id="dados">
+
+    </ul>
+
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script>
+        $.ajax({
+            url:"http://127.0.0.1:8000/api/jsonplaceholder.typicode.com/todos/",
+            datatype:"json",
+            success:function(dados){
+                console.log(dados)
+                $.each(dados, function (){
+                    $('#dados').append("<li class='list-group-item align-content-center'>"+this.userId+"</li>")
+                    $('#dados').append("<li class='list-group-item'>"+this.id+"</li>")
+                    $('#dados').append("<li class='list-group-item'>"+this.title+"</li>")
+                    $('#dados').append("<li class='list-group-item'>"+this.completed+"</li>")
+                    $('#dados').append("<br />")
+                    $('#dados').append("<br />")
+                    $('#dados').append("<br />")
+                })
+            }
+        })
+
+    </script>
+</body>
+</html>
